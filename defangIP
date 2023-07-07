@@ -1,0 +1,6 @@
+//https://leetcode.com/problems/defanging-an-ip-address/
+
+function defang(address){
+    address = address.split(".").join("[.]")
+     return address;
+}
