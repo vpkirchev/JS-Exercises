@@ -1,0 +1,15 @@
+// https://leetcode.com/problems/jewels-and-stones/
+
+var numJewelsInStones = function(jewels, stones) {
+  jewels = jewels.split("") 
+  stones = stones.split("")
+  result = 0
+  for (var i=0; i<jewels.length; i++){
+    for (var j=0; j<stones.length; j++){
+        if (jewels[i]===stones[j]){
+            result++
+        }
+    }
+  }
+  return result;
+};
