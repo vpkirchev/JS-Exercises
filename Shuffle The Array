@@ -1,0 +1,9 @@
+// https://leetcode.com/problems/shuffle-the-array/
+
+var shuffle = function(nums, n) {
+    var result = []
+    for (i=0; i<n; i++){
+       result.push(nums[i], nums[i+n])
+    }
+    return result;
+};
