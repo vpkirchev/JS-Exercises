@@ -1,0 +1,14 @@
+// https://leetcode.com/problems/two-sum/
+
+var twoSum = function(nums, target) {
+    var result = []
+    for (var i = 0; i<nums.length-1; i++){
+        for (var t = i+1; t<nums.length; t++){
+            if ((nums[i] + nums[t] === target)){
+                result.push(i)
+                result.push(t)
+            }
+        }
+    }
+    return result;
+};
