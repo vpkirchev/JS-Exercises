@@ -1,0 +1,135 @@
+// https://leetcode.com/problems/integer-to-english-words/description/
+
+var numberToWords = function(num) {
+    const ed = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+    const de = ["Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+    const teen = ["Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+    var result = ""
+
+if(num!=0){
+
+    
+    if (num.toString().length >9){
+        result += ed[Math.floor(num/1000000000)-1] + " Billion "
+        num = num - (Math.floor(num/1000000000)*1000000000)
+    }
+    if (num.toString().length >6){
+        if (Math.floor(num/100000000) != 0){
+        result += ed[Math.floor(num/100000000)-1] + " Hundred "
+        num = num - (Math.floor(num/100000000)*100000000)
+            } else {num = num - (Math.floor(num/100000000)*100000000)}
+        if (num == 0){result += "Million"}
+        else{
+        if (Math.floor(num/10000000)<2 && Math.floor(num/10000000) !=0 && num != 10000000){
+            if(Math.floor(num%10000000) !=0){
+                if(Math.floor(num/1000000) == 10){
+                    result += "Ten Million "
+                    num = num - (Math.floor(num/1000000)*1000000)
+                } else{
+            result += teen[Math.floor((num/1000000)%10)-1] + " Million "
+            num = num - (Math.floor(num/1000000)*1000000)
+                }   
+        }   else {num = num - (Math.floor(num/1000000)*1000000)}
+        } 
+        else if(Math.floor(num/10000000)==0){
+                if (Math.floor(num/1000000) !=0){
+            result += ed[Math.floor(num/1000000)-1] + " Million "
+            num = num - (Math.floor(num/1000000)*1000000)
+                } else{
+                    result += "Million "
+                    num = num - (Math.floor(num/1000000)*1000000)
+                }
+        }
+        else {
+            if(Math.floor((num/1000000)%10) !=0){
+            result += de[Math.floor(num/10000000)-1]  + " " + ed[Math.floor((num/1000000)%10)-1] + " Million "
+            num = num - (Math.floor(num/1000000)*1000000)
+            }
+            else{
+            result += de[Math.floor(num/10000000)-1] + " Million "
+            num = num - (Math.floor(num/1000000)*1000000)
+            }
+        }
+        }
+        
+    }
+    if (num.toString().length >3){
+        if (Math.floor(num/100000) != 0){
+            result += ed[Math.floor(num/100000)-1] + " Hundred "
+            num = num - (Math.floor(num/100000)*100000)
+        } else {num = num - (Math.floor(num/100000)*100000)}
+        if (num == 0){
+            result += "Thousand"
+            }
+        else{    
+        if (Math.floor(num/10000)<2 && Math.floor(num/10000) != 0 && num != 10000){
+            if(Math.floor(num%10000) !=0){
+                if(Math.floor(num/1000) == 10){
+                    result += "Ten Thousand "
+                    num = num - (Math.floor(num/1000)*1000)
+                } else {
+            result += teen[Math.floor((num/1000)%10)-1] + " Thousand "
+            num = num - (Math.floor(num/1000)*1000)
+            }
+            }   
+            else {num = num - (Math.floor(num/1000)*1000)}
+        }
+        else if (Math.floor(num/10000) ==0) {
+            if (Math.floor(num/1000) !=0){
+            result += ed[Math.floor(num/1000)-1] + " Thousand "
+            num = num - (Math.floor(num/1000)*1000)
+            } else {
+                result += "Thousand "
+                num = num - (Math.floor(num/1000)*1000)
+            }
+        }
+        else {
+            if (Math.floor((num/1000)%10) !=0){
+            result += de[Math.floor(num/10000)-1]  + " " + ed[Math.floor((num/1000)%10)-1] + " Thousand "
+            num = num - (Math.floor(num/1000)*1000)
+        }   else {
+            result += de[Math.floor(num/10000)-1] + " Thousand "
+            num = num - (Math.floor(num/1000)*1000)
+        }
+        }
+        }
+        
+    }
+    if (num.toString().length <=3 && num.toString().length >0){
+        if (Math.floor(num/100) != 0){
+            if(num%100 == 0){
+            result += ed[Math.floor(num/100)-1] + " Hundred"
+            num = 0
+            }else{
+            result += ed[Math.floor(num/100)-1] + " Hundred "
+            num = num - (Math.floor(num/100)*100)
+         }
+        }else {num = num-(Math.floor(num/100)*100)}
+        if (num != 0 && Math.floor(num/10) !=0){
+            if (num/10<2 && num/10 >0){
+                if(Math.floor(num%10) !=0){
+            result += teen[Math.floor(num%10)-1]
+        }       else if(num%10 === 0){
+            result += "Ten"
+        }
+        }   else {
+                if (num%10 !=0){
+            result += de[Math.floor(num/10)-1] + " " + ed[Math.floor(num%10)-1]
+        }
+                else {
+            result += de[Math.floor(num/10)-1]
+        }
+    }
+        }
+        else if (num !=0 && Math.floor(num/10) ==0){
+            result += ed[Math.floor(num)-1]
+        }
+       
+    
+    }
+    
+}else{
+    result = "Zero"
+}
+    return result.trim();
+}
