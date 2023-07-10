@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/valid-parentheses/description/
+
+var isValid = function(s) {
+   
+    if(!s||s.length <2){
+    return false
+   }
+   var result = []
+   for (var i of s){
+    if (i === '(' || i === '[' || i === '{'){
+        result.push(i)
+    } else{
+        if(!result.length){
+            return false
+        } 
+            var last = result.pop()
+            if (i === ')' && last !== '('){
+                return false
+            }
+            if (i === ']' && last !== '['){
+                return false
+            }
+            if (i === '}' && last !== '{'){
+                return false
+            }
+        
+    }
+   }
+   return !result.length
+};
