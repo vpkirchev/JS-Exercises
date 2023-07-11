@@ -1,0 +1,9 @@
+// https://leetcode.com/problems/return-length-of-arguments-passed/description/
+
+var argumentsLength = function(...args) {
+ var result = 0
+ for (let i of args){
+        result ++
+ }
+ return result
+};
