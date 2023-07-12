@@ -1,0 +1,23 @@
+// https://leetcode.com/problems/palindromic-substrings/submissions/992555862/
+
+var countSubstrings = function(s) {
+var result = 0
+ 
+for (var i=0; i<s.length; i++){
+    pal(i,i) // odd
+    pal(i, i+1) // even
+ }
+ 
+
+
+function pal(left, right) {
+    while (left>=0 && right <=s.length && s[left] === s[right]){
+        result ++
+        left --
+        right ++
+    }
+ }
+
+return result
+
+};
