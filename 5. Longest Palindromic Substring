@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/longest-palindromic-substring/description/
+
+var longestPalindrome = function(s) {
+ var result = ""
+ var compare = ""
+ for (var i=0; i<s.length; i++){
+    pal(i,i) // odd
+    pal(i, i+1) // even
+ }
+ 
+ function pal(left, right) {
+    while (left>=0 && right <=s.length && s[left] === s[right]){
+        compare = s.substring(left,right+1)
+               
+        if(result.length < compare.length){
+            result = compare
+          }
+        left --
+        right ++
+    }
+ }
+ return result
+
+};
